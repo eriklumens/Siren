@@ -41,7 +41,7 @@ exit the terminal and start a new one to reload the PATH
 (test: laravel in any folder, command must be found)
 
 # Create a new project with Laravel
-(<S.H.> : I have already done this, this structure is already in Git.)
+> I have already done this, this structure is already in Git.
 
 1. Go to the main Siren folder
     ```shell
@@ -53,12 +53,12 @@ exit the terminal and start a new one to reload the PATH
     ```
 
 3. Our directory structure is now:
-```
-Siren
-|    README.md
-|----Siren
-     |---- app
-     |---- bootstrap
-     |---- package.json
-     |---- ....
-
+    ```
+    Siren
+    |    README.md
+    |----Siren
+         |---- app
+         |---- bootstrap
+         |---- package.json
+         |---- ....
+    ```
