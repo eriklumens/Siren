@@ -24,7 +24,7 @@
 
 1. download laravel installer
     ```shell
-    composer global require "laravel/installer=~1.1"
+    composer global require "laravel/installer=~1.1.3"
     ```
 
 2. add laravel command to PATH
@@ -41,7 +41,8 @@ exit the terminal and start a new one to reload the PATH
 (test: laravel in any folder, command must be found)
 
 # Create a new project with Laravel
-> I have already done this, this structure is already in Git.
+> This does not need to happen when you clone this project from Github.
+It has already been done for you ;-)
 
 1. Go to the main Siren folder
     ```shell
@@ -62,3 +63,44 @@ exit the terminal and start a new one to reload the PATH
          |---- package.json
          |---- ....
     ```
+
+### Check the security settings
+The webserver will need to write to your storage folder.
+So check that this folder has the correct access rights.
+```shell
+sudo chmod 775 storage
+```
+
+### Create the secret key
+Copy or move the orginal env example file to a real .env file
+This file is located in the root of the Laravel app we created
+```shell
+ cp .env.example .env
+```
+.env will be ignored by git as it is set in gitignore.
+So adding your own secret in this file will not be visible on github.com
+Now let's generate the key that will be put in this file.
+```shell
+php artisan key:generate
+```
+# Set up a virtual host for our local website (Apache)
+It can't be better explained than on the following site:
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts
+
+When configuring the host, make sure the document root points to the public directory of our Laravel app.
+So something like should do it:
+```shell
+<VirtualHost 127.0.0.2:80>
+	ServerAdmin admin@siren.com
+	ServerName siren.com
+	ServerAlias www.siren.com
+	DocumentRoot /home/stijn/Development/Siren/siren/public
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+	<Directory />
+      Require all granted
+    </Directory>
+</VirtualHost>
+```
+reload and restart the apache service and your local Siren site should be up and running.
+As you see in my configuration above, I have to browse to 127.0.0.2 and there it is, siren.com on your local machine!
