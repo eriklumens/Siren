@@ -104,3 +104,47 @@ So something like should do it:
 ```
 reload and restart the apache service and your local Siren site should be up and running.
 As you see in my configuration above, I have to browse to 127.0.0.2 and there it is, siren.com on your local machine!
+
+# Add Twitter Bootstrap to our project
+## Install required packages
+```shell
+cd siren
+composer.phar update
+npm install # probably with sudo
+```
+
+> this adds two packages to our application: laravel-elixr and bootstrap-sass
+
+## Modify app.scss
+In the directory /resources/assets/sass modify the app.scss file.
+Uncomment the first line so the file looks something like:
+```scss
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+```
+
+## Modify gulpfile.js for extra bootstrap requirements
+In the main directory open gulpfile.js and replace following piece of code:
+```javascript
+elixir(function(mix) {
+  mix.sass('app.scss');
+});
+```
+by this:
+```javascript
+elixir(function(mix) {
+    var bootstrapPath = 'node_modules/bootstrap-sass/assets';
+    mix.sass('app.scss')
+        .copy(bootstrapPath + '/fonts', 'public/fonts')
+        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');
+});
+```
+
+## Run gulp to get the bootstrap source files
+```shell
+gulp
+```
+When the gulp command is not found, install it via Node Package Manager
+```shell
+sudo npm install -g gulp
+```
+Now have a look at the public folder, all the CSS, fonts and JS should be there!
