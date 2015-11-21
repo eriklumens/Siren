@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel is awesome</title>
+        <title>Siren</title>
 
         {!! Html::style('css/app.css') !!}
 
@@ -14,7 +14,7 @@
 			body { padding-top: 0px; }
 		}
         </style>
-        
+
     </head>
 
     <nav class="navbar navbar-default navbar-fixed-top">
