@@ -1,0 +1,3 @@
+[submodule "discogs-xml2db"]
+	path = discogs-xml2db
+	url = git@github.com:stijnh92/discogs-xml2db.git
